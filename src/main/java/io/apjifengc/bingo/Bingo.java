@@ -109,9 +109,6 @@ public class Bingo extends JavaPlugin {
 
     public void startGame() throws BadTaskException {
         String worldName = Config.getMain().getString("room.world-name");
-        if (!(Config.getMain().getBoolean("debug") && WorldManager.exists(worldName))) {
-            WorldManager.regenerateWorld(worldName);
-        }
         var world = Bukkit.getWorld(worldName);
         world.setPVP(false);
         world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);

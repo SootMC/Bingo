@@ -7,18 +7,18 @@ lang: en_US
 
 room:
   # This is the max player count of the Bingo game.
-  max-player: 8
+  max-player: 200
 
   # This is the min player count to start the game.
-  min-player: 4
+  min-player: 10
 
   # This is how many players complete needed to instantly end the game.
   # Suggest value: the max players / 4
-  winner-count: 2
+  winner-count: 50
 
   # This is the time(seconds) to end the game if a player completed.
   # lower than 1 to disable it.
-  end-time: 300
+  end-time: 0
 
   # This is the time(seconds) to start the game when the players are enough.
   # Example:
@@ -28,9 +28,9 @@ room:
   #  - "8|5"   -  When the player count is more than 8 (include 8), the game will start in 5 seconds
   # * You need to write at least the min-player time.
   start-time:
-    - "4|300"
-    - "6|60"
-    - "8|5"
+    - "20|300"
+    - "60|60"
+    - "100|5"
 
   # Allows player join the game while game are running.
   join-while-game: true
@@ -52,11 +52,11 @@ chat:
 
 game:
   # The time to be set when the game starts.
-  start-time: 6000
+  start-time: 60000
 
   # This is the no PVP time(second).
   # lower than 1 to disable it.
-  no-pvp: 300
+  no-pvp: 600
 
   # This is how long the world border is. (Blocks)
   # lower than 1 to disable it.
@@ -64,15 +64,15 @@ game:
 
   # This is how many chunks will be pre-generated.
   # lower than 1 to disable it.
-  pre-generate-range: 12
+  pre-generate-range: 30
 
   # This is the max range that player will be teleported randomly at the beginning.
   # lower than 1 to disable it.
-  random-teleport-range: 800
+  random-teleport-range: 500
 
   # Allows players to open other players' GUI. (bingo.use.gui.others)
   # Available values: true / false
-  access-to-others-gui: true
+  access-to-others-gui: false
 
   # The start kits player will get.
   # If you are not familiar with this, you could use in-game commands to config this one.
