@@ -6,6 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -22,6 +23,7 @@ import io.apjifengc.bingo.api.game.BingoPlayer;
 import io.apjifengc.bingo.util.Config;
 import io.apjifengc.bingo.util.Message;
 import io.apjifengc.bingo.util.TeleportUtil;
+import org.bukkit.scheduler.BukkitRunnable;
 
 @SuppressWarnings("ClassCanBeRecord")
 public final class OtherListener implements Listener {
@@ -130,7 +132,7 @@ public final class OtherListener implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     void onPlayerRespawn(PlayerRespawnEvent event) {
         if (plugin.hasBingoGame()) {
             BingoGame game = plugin.getCurrentGame();
@@ -138,6 +140,12 @@ public final class OtherListener implements Listener {
                 BingoPlayer player = game.getPlayer(event.getPlayer());
                 if (player != null) {
                     player.giveGuiItem();
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            game.teleportToBingoWorld(event.getPlayer());
+                        }
+                    }.runTaskLater(plugin, 20L);
                 }
             }
         }
